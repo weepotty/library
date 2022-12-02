@@ -24,6 +24,17 @@ class Book {
   addBookToArray() {
     myLibrary.push(this);
   }
+
+  addBookPic() {
+    const newBookDiv = document.createElement("div");
+    const newBookImage = document.createElement("img");
+    const bookTitle = document.createElement("div");
+    newBookDiv.classList.add("book");
+    newBookImage.src = "images/book-blue.png";
+    bookTitle.textContent = this.title;
+    newBookDiv.append(newBookImage, bookTitle);
+    main.append(newBookDiv);
+  }
 }
 
 const theHobbit = new Book("The Hobbit", "JRR Tolkien", "295", "not read yet");
@@ -47,15 +58,20 @@ myLibrary.forEach((book) => {
 });
 
 // When the user clicks on the button, open the modal
-openModalButton.addEventListener("click", changeDisplay);
+openModalButton.addEventListener("click", showModal);
 
 addBookButton.addEventListener("click", createBookEntry);
 
-function changeDisplay() {
+function showModal() {
   modal.style.display = "block";
 }
 
+function hideModal() {
+  modal.style.display = "none";
+}
+
 function createBookEntry(event) {
+  modal.style.display = "none";
   event.preventDefault();
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
@@ -68,10 +84,10 @@ function createBookEntry(event) {
   } else {
     read = "Not read yet";
   }
-  modal.style.display = "none";
+
   const newBook = new Book(title, author, pages, read);
   newBook.addBookToArray();
-  console.log(myLibrary);
+  newBook.addBookPic();
 }
 
 // When the user clicks on <span> (x), close the modal
