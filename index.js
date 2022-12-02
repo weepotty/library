@@ -55,7 +55,8 @@ function changeDisplay() {
   modal.style.display = "block";
 }
 
-function createBookEntry() {
+function createBookEntry(event) {
+  event.preventDefault();
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
   const pages = document.getElementById("pages").value;
