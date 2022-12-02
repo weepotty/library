@@ -30,37 +30,38 @@ class Book {
     const newBookImage = document.createElement("img");
     const bookTitle = document.createElement("div");
     newBookDiv.classList.add("book");
-    newBookImage.src = "images/book-blue.png";
+    if (this.status === "Read") {
+      newBookImage.src = "images/book-blue.png";
+    } else {
+      newBookImage.src = "images/book-pink.png";
+    }
     bookTitle.textContent = this.title;
     newBookDiv.append(newBookImage, bookTitle);
     main.append(newBookDiv);
   }
 }
 
-const theHobbit = new Book("The Hobbit", "JRR Tolkien", "295", "not read yet");
+//starter library
+const theHobbit = new Book("The Hobbit", "JRR Tolkien", "295", "Not read yet");
 
-const theWitches = new Book("The Witches", "Roald Dahl", "100", "read");
-const wild = new Book("Wild", "Cheryl Strayed", "336", "read");
+const theWitches = new Book("The Witches", "Roald Dahl", "100", "Read");
+const wild = new Book("Wild", "Cheryl Strayed", "336", "Read");
 
 theHobbit.addBookToArray();
 theWitches.addBookToArray();
 wild.addBookToArray();
 
 myLibrary.forEach((book) => {
-  const newBookDiv = document.createElement("div");
-  const newBookImage = document.createElement("img");
-  const bookTitle = document.createElement("div");
-  newBookDiv.classList.add("book");
-  newBookImage.src = "images/book-blue.png";
-  bookTitle.textContent = book.title;
-  newBookDiv.append(newBookImage, bookTitle);
-  main.append(newBookDiv);
+  book.addBookPic();
 });
 
 // When the user clicks on the button, open the modal
 openModalButton.addEventListener("click", showModal);
 
-addBookButton.addEventListener("click", createBookEntry);
+addBookButton.addEventListener("click", (event) => {
+  hideModal();
+  createBookEntry(event);
+});
 
 function showModal() {
   modal.style.display = "block";
@@ -70,24 +71,25 @@ function hideModal() {
   modal.style.display = "none";
 }
 
+function createBook(title, author, pages, read) {
+  const newBook = new Book(title, author, pages, read);
+  newBook.addBookToArray();
+  newBook.addBookPic();
+}
+
 function createBookEntry(event) {
-  modal.style.display = "none";
   event.preventDefault();
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
   const pages = document.getElementById("pages").value;
   const readStatus = document.getElementById("read-status").checked;
   console.log("click registered");
-  console.log(title);
-  if (readStatus === true) {
-    read = "Read";
-  } else {
-    read = "Not read yet";
-  }
 
-  const newBook = new Book(title, author, pages, read);
-  newBook.addBookToArray();
-  newBook.addBookPic();
+  console.log(myLibrary);
+
+  readStatus ? (read = "Read") : (read = "Not read yet");
+
+  createBook(title, author, pages, read);
 }
 
 // When the user clicks on <span> (x), close the modal
