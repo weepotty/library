@@ -1,0 +1,110 @@
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  text-align: center;
+  color: rgb(55, 122, 174);
+}
+
+.book {
+  position: relative;
+
+  text-align: center;
+  color: black;
+  margin: 0;
+}
+
+.book > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  padding-bottom: 8px;
+}
+
+.book > img {
+  height: 50px;
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 50px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+form > * {
+  border: solid 1px blue;
+}
+span {
+  border: 1px solid green;
+  margin-left: 5px;
+}
+
+.form-field {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.form-field > * {
+  border: 1px solid red;
+  flex-shrink: 1;
+}
+input {
+  flex-basis: 70%;
+}
+
+#add-book {
+  width: 50%;
+}
