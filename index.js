@@ -103,3 +103,6 @@ window.onclick = function (event) {
     modal.style.display = "none";
   }
 };
+
+//add book removal button
+// invoke info function when you click on a book
