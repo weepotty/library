@@ -4,7 +4,8 @@ const main = document.querySelector("main");
 const openModalButton = document.getElementById("open-modal");
 const addBookButton = document.getElementById("add-book");
 const modal = document.getElementById("myModal");
-
+const bookBlock = document.querySelectorAll("div.book > div").textContent;
+const bookInfo = document.querySelector(".book-info");
 // Get the <span> element that closes the modal
 const span = document.getElementsByClassName("close")[0];
 
@@ -16,9 +17,7 @@ class Book {
     this.status = status;
   }
   info() {
-    console.log(
-      `${this.title} by ${this.author}, ${this.pages} pages, ${this.status}`
-    );
+    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.status}`;
   }
 
   addBookToArray() {
@@ -38,9 +37,17 @@ class Book {
     bookTitle.textContent = this.title;
     newBookDiv.append(newBookImage, bookTitle);
     main.append(newBookDiv);
+    newBookDiv.addEventListener("click", () => {
+      displayInfo(this);
+    });
   }
 }
 
+function displayInfo(newBook) {
+  console.log(newBook.info());
+  console.log(bookInfo);
+  bookInfo.textContent = newBook.info();
+}
 //starter library
 const theHobbit = new Book("The Hobbit", "JRR Tolkien", "295", "Not read yet");
 
