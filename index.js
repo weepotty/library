@@ -37,15 +37,11 @@ class Book {
     bookTitle.textContent = this.title;
     newBookDiv.append(newBookImage, bookTitle);
     main.append(newBookDiv);
-    newBookDiv.addEventListener("click", () => {
-      displayInfo(this);
-    });
+    newBookDiv.addEventListener("click", displayInfo.bind(new Book(), this));
   }
 }
 
 function displayInfo(newBook) {
-  console.log(newBook.info());
-  console.log(bookInfo);
   bookInfo.textContent = newBook.info();
 }
 //starter library
